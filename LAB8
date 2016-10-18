@@ -1,0 +1,79 @@
+"""
+Author: Austin Suddarth
+TRACE: /suddarth2016
+LAB 8
+10/18/2016
+Description: A GUI to draw geometric shapes and color them in
+"""
+
+from tkinter import *
+
+class Drawing(Frame):
+    def __init__(self):
+        Frame.__init__(self)
+        self.master.title("GUIs drawing geometric shapes")
+        self.grid()
+        frame=Frame(self)
+
+        self.CanvasPane=Frame(self)
+        self.CanvasPane.grid(row =0, column=0)
+
+        self.Canvas=Canvas(self.CanvasPane, width = 400,
+                                    height = 300, bg = "white")
+        self.Canvas.grid(row=0, column=0)
+
+
+
+        self.ButtonPane=Frame(self)
+        self.ButtonPane.grid(row=1, column=0)
+
+        self.RadioVar=IntVar()
+
+
+        Rectangle = Radiobutton(self.ButtonPane, text = "Rectangle", bg = "white",
+                            variable = self.RadioVar, value = 1,
+                            command = self.Rectangle)
+        Rectangle.grid(row = 0, column = 0)
+
+        Oval = Radiobutton(self.ButtonPane, text = "Oval", bg = "white",
+                               variable = self.RadioVar, value = 2,
+                               command = self.Oval)
+        Oval.grid(row = 0, column = 1)
+
+        self.CheckVar=IntVar()
+
+        self._FillButton=Checkbutton(self.ButtonPane, text="Filled",  variable=self.CheckVar)
+        self._FillButton.grid(row=0, column=2)
+
+        self.ClearButton= Button(self.ButtonPane, text ="Clear",
+                                 command=self.Clear)
+        self.ClearButton.grid(row=0, column=3)
+
+
+
+    def Rectangle(self):
+        if self.CheckVar.get() == 1:
+            self.Canvas.create_rectangle(50,50,
+                                             250,250, fill = "red",
+                                                       tags="Rectangle")
+        else:
+            self.Canvas.create_rectangle(50,50,
+                                         250,250,  tags= "Rectangle")
+    def Oval(self):
+        if self.CheckVar.get() == 1:
+            self.Canvas.create_oval(50,100,
+                                        250,200, fill= "yellow",
+                                                  tags="Oval")
+        else:
+            self.Canvas.create_oval(50,100,
+                                    250,200, tags="Oval")
+
+
+    def Clear(self):
+        self.Canvas.delete("Rectangle")
+        self.Canvas.delete("Oval")
+        self.RadioVar.set(0)
+        self.check = 0
+def main():
+    Drawing().mainloop()
+main()
