@@ -18,6 +18,3 @@ College of Natural and Applied Sciences
 Our House Foundation
 Chief Technology Officer
 Board of Directors
-
-Friends of Roy Blunt
-Staff Member
